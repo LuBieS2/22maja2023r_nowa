@@ -23,6 +23,18 @@
   <ItemGroup>
     <Compile Include="_22maja2023r_nowa.py" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Bez tytułu.png" />
+    <Content Include="bin.txt" />
+    <Content Include="bin_przyklad.txt" />
+    <Content Include="gracze.txt" />
+    <Content Include="gry.txt" />
+    <Content Include="oceny.txt" />
+    <Content Include="odp_bin_przyklad.txt" />
+    <Content Include="owoce.txt" />
+    <Content Include="pi.txt" />
+    <Content Include="pi_przyklad.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
        Visual Studio and specify your pre- and post-build commands in
