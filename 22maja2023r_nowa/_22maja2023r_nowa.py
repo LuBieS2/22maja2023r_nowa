@@ -68,7 +68,7 @@ print(c_shortest, shortest)
     rosnace=[]
 print(biggest)'''
 #2
-file1=open("bin.txt","r")
+file1=open("bin_przyklad.txt","r")
 n=list(map(str.strip, file1.readlines()))
 counter=0
 highest_number=0
