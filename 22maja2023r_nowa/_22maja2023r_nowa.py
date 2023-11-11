@@ -1,7 +1,51 @@
 #https://cke.gov.pl/images/_EGZAMIN_MATURALNY_OD_2023/Arkusze_egzaminacyjne/2023/Informatyka/MINP-R0-100-2305.pdf
+def wczytaj_liczby(nazwa_pliku):
+    file=open(nazwa_pliku, "r")
+    pi=list(map(str.strip, file.readlines()))
+    return pi
+def czy_rosnaca_malejacy(ciag):
+    a0=ciag[0]
+    a1=ciag[1]
+    i=2
+    if a0>=a1:
+        return False
+    while a0<a1:
+        a0=a1
+        a1=ciag[i]
+        i+=1
+        if i==len(ciag):
+            if a0>a1:
+                return True
+            return False
+    if a0==a1:
+        a0=a1
+        a1=ciag[i]
+        i+=1
+        if i==len(ciag):
+           if a0>a1:
+                return True
+           return False
+    while a0>a1:
+        a0=a1
+        a1=ciag[i]
+        i+=1
+        if i==len(ciag):
+            if a0>a1:
+                return True
+            return False
+    return False
+
+def wczytaj_ciagi(liczby):
+    i=0
+    tablice=[]
+    while i<=len(liczby)-6:
+        tablice.append([])
+        for j in range(6):
+            tablice[i].append(liczby[j+i])
+        i+=1
+    return tablice
 #3.1
-file=open("pi.txt", "r")
-pi=list(map(str.strip, file.readlines()))
+'''pi=wczytaj_liczby("pi_przyklad.txt")
 n=0
 numbers_2=[]
 c=""
@@ -39,36 +83,55 @@ for i in range(9, 100):
         shortest=str(i)
     
 print(c_longest, longest)
-print(c_shortest, shortest)
+print(c_shortest, shortest)'''
 #3.3
-#rosnace=[]
-#malejace=[]
-#count=0
+pi=wczytaj_liczby("pi_przyklad.txt")
+ciagi=wczytaj_ciagi(pi)
 
-'''for n, i in enumerate(numbers):
-        if n<len(numbers-2):
-            if i<numbers[n+1] and chuj==0 and numbers[0]<numbers[1]:
-                if len(rosnace)==0:
-                    rosnace.append(i)
-                rosnace.append(numbers[n+1])
-            elif i>numbers[n+1]:
-                chuj+=1
-            else:
-                kiurw+=1
-            if len(rosnace)>=2 and numbers[n+1]>numbers[n+2] and kiurw>0:
-                if len(malejace)==0:
-                    malejace.append(numbers[n+1])
-                malejace.append(numbers[n+2])
-                chuj+=1
-            elif len(malejace)>0:
-                break
-    if len(rosnace)+len(malejace)>biggest:
-        biggest=len(rosnace)+len(malejace)
-    malejace=[]
-    rosnace=[]
-print(biggest)'''
+'''rosnaca_malejacy=[]
+for ciag in ciagi:
+    
+    if czy_rosnaca_malejacy(ciag):
+        rosnaca_malejacy.append(ciag)
+print(len(rosnaca_malejacy))
+print(len(pi))
+print(len(ciagi))'''
+#3.4
+najdluzszy_index=0
+najdluzsza_dlugosc=0
+index=0
+czy_koniec=False
+while index+4<=len(pi) or czy_koniec:
+    dlugosc_ciagu=4    
+    ciag=pi[index:index+dlugosc_ciagu]
+    
+    index_kopia = index
+    while czy_rosnaca_malejacy(ciag):
+        index_kopia-=1
+        dlugosc_ciagu+=1
+        ciag=pi[index_kopia:index_kopia+dlugosc_ciagu]
+        
+    ciag=ciag[1:]
+    index_kopia+=1
+    dlugosc_ciagu-=1
+    
+    while czy_rosnaca_malejacy(ciag):
+        dlugosc_ciagu+=1
+        if index_kopia+dlugosc_ciagu==len(pi):
+            czy_koniec=True
+            break
+        ciag=pi[index_kopia:index_kopia+dlugosc_ciagu]
+    
+    dlugosc_ciagu-=1
+    
+    if dlugosc_ciagu>najdluzsza_dlugosc:
+        najdluzsza_dlugosc=dlugosc_ciagu
+        najdluzszy_index=index_kopia
+    index+=1
+print(najdluzsza_dlugosc)
+print(najdluzszy_index+1, pi[najdluzszy_index:najdluzszy_index+najdluzsza_dlugosc])
 #2
-file1=open("bin_przyklad.txt","r")
+'''file1=open("bin_przyklad.txt","r")
 n=list(map(str.strip, file1.readlines()))
 counter=0
 highest_number=0
@@ -95,4 +158,4 @@ for num in n:
     number=(int(num, 2))    
     xor_bin.append(number^(int(number/2)))
 for x in xor_bin:
-    print(bin(x))    
+    print(bin(x))'''    

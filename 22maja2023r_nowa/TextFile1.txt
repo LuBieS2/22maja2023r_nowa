@@ -1,0 +1,28 @@
+for n in range(len(pin)-1):
+    if pin[n]<=pin[n+1] and l==0:
+        if len(growing)==0:
+            growing.append(pin[n])
+            growing.append(pin[n+1])
+        else:
+            growing.append(pin[n+1])
+    elif l==0:
+        l+=1
+        continue
+    if pin[n]>=pin[n+1] and l>0:
+        if len(descending)==0:
+            descending.append(pin[n])
+            descending.append(pin[n+1])
+            l+=1
+        else:
+            descending.append(pin[n+1]) 
+    if (pin[n]<pin[n+1] and l==2) or n==len(pin)-2 and len(growing)>=2 and len(descending)>=2:
+        lst.append([growing, descending])
+        l=0
+        growing=[]
+        descending=[]
+    elif (pin[n]<pin[n+1] and l==2) or n==len(pin)-2 and len(growing)<=2 and len(descending)<=2:
+        l=0
+        growing=[]
+        descending=[]
+print(lst)
+
