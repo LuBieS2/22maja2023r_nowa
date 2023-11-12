@@ -1,4 +1,7 @@
 #https://cke.gov.pl/images/_EGZAMIN_MATURALNY_OD_2023/Arkusze_egzaminacyjne/2023/Informatyka/MINP-R0-100-2305.pdf
+from winreg import KEY_CREATE_LINK
+
+
 def wczytaj_liczby(nazwa_pliku):
     file=open(nazwa_pliku, "r")
     pi=list(map(str.strip, file.readlines()))
@@ -102,7 +105,7 @@ def zad3():
     print(len(ciagi))
 #3.4
 def zad4():
-    pi=wczytaj_liczby("pi_przyklad.txt")    
+    pi=wczytaj_liczby("pi.txt")    
     najdluzszy_index=0
     najdluzsza_dlugosc=0
     index=0
@@ -166,7 +169,70 @@ def zad22():
         xor_bin.append(number^(int(number/2)))
     for x in xor_bin:
         print(bin(x))
-        
-zad22()
 
-zad4()
+def znajdz_rosnacy(ciag):
+    i=0
+    
+    while i < len(ciag) - 1 and ciag[i+1] > ciag[i]:
+        i+=1
+    
+    return i
+
+def znajdz_malejacy(ciag):
+    i = len(ciag) - 1
+    
+    while i > 0 and ciag[i] < ciag[i-1]:
+        i-=1
+        
+    return i
+
+def znajdz_malejacy_2(ciag):
+    i = 0
+    
+    while i < len(ciag) - 1 and ciag[i+1] < ciag[i]:
+        i+=1
+        
+    return i
+
+def zadanie3():
+    pi=wczytaj_liczby("pi_przyklad.txt")
+    ciagi=wczytaj_ciagi(pi)
+    rosnaco_malejace=[]
+    
+    for ciag in ciagi:
+        if znajdz_malejacy - znajdz_rosnacy(ciag) <= 1:
+            rosnaco_malejace.append(ciag)
+            
+    print(rosnaco_malejace)
+
+'''
+def zadanie4():
+    pi=wczytaj_liczby("pi_przyklad.txt")
+    najdluzszy = 0    
+    najdluzszy_index = 0
+    
+    index = 0
+    while index + 1 < len(pi):
+        rosnacy = znajdz_rosnacy(pi[index:])
+        if rosnacy != 0:
+            
+            index_malejacy = index + rosnacy
+            malejacy = 0
+            if pi[index_malejacy] == pi[index_malejacy + 1]:
+                malejacy = znajdz_malejacy_2(pi[index+1])
+            else:
+                malejacy = znajdz_malejacy_2(pi[index])
+            if malejacy != 0:
+                dlugosc = rosnacy + malejacy
+                if dlugosc > najdluzszy:
+                    najdluzszy = dlugosc
+                    najdluzszy_index = rosnacy
+            index += rosnacy + malejacy
+        else:
+            index += 1
+            
+    print(najdluzszy)
+    print(najdluzszy_index)'''
+    
+'''zajebcie mnie'''
+    
